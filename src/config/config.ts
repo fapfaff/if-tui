@@ -5,6 +5,12 @@ import {ManifestProcessArgs} from '../types/process-args';
 export const CONFIG = {
   impact: {
     ARGS: {
+      init: {
+        type: Boolean,
+        optional: true,
+        description:
+          'Initialize the project by interactively creating a new manifest file.',
+      },
       manifest: {
         type: String,
         optional: true,
@@ -43,11 +49,13 @@ export const CONFIG = {
       },
     } as ArgumentConfig<ManifestProcessArgs>,
     HELP: `impact 
+  -init
   -manifest [path to the input file]
   -output [path to the output file]
   -format [yaml|csv] 
   -verbose
   -help 
+  init: initialize the project by interactively creating a new manifest file.
   manifest: path to an input manifest
   output: path to the output file where the results as saved, if none is provided it prints to stdout.
   format: the output file format. default to yaml but if csv is specified then it formats the outputs as a csv file for loading into another program.

@@ -56,10 +56,16 @@ export const parseArgs = () => {
     output,
     'override-params': overrideParams,
     help,
+    init,
   } = validateAndParseProcessArgs();
 
   if (help) {
     console.info(HELP);
+    return;
+  }
+
+  if (init) {
+    console.info('Welcome to Impact Framework!');
     return;
   }
 
