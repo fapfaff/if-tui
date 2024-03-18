@@ -17,7 +17,6 @@ Incubation projects are experimental, offer no support guarantee, have minimal g
   NOT_NATIVE_PLUGIN: (path: string) =>
     `
 [!important] You are using plugin ${path} which is not part of the Impact Framework standard library. You should do your own research to ensure the plugins are up to date and accurate. They may not be actively maintained.`,
-  SOMETHING_WRONG: 'Something wrong with cli arguments. Please check docs.',
   ISSUE_TEMPLATE: `
 Impact Framework is an alpha release from the Green Software Foundation and is released to capture early feedback. If you'd like to offer some feedback, please use this issue template: 
 https://github.com/Green-Software-Foundation/if/issues/new?assignees=&labels=feedback&projects=&template=feedback.md&title=Feedback+-+
