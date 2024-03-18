@@ -1,0 +1,80 @@
+import {Ui} from './ui';
+
+/**
+ * Represents an abstract state.
+ */
+export abstract class State {
+  context: CompositeState;
+
+  /**
+   * Creates a new instance of the State class.
+   * @param context The context in which the state is being executed.
+   */
+  constructor(context: CompositeState) {
+    this.context = context;
+  }
+
+  /**
+   * Executes the state logic.
+   * @param ui The user interface.
+   * @returns A Promise that resolves when the state execution is complete.
+   */
+  public abstract execute(ui: Ui): Promise<void>;
+}
+
+/**
+ * Represents an abstract class for composite states.
+ * Composite states are states that contain a queue of other states to be executed sequentially.
+ */
+export abstract class CompositeState extends State {
+  stateQueue: State[] = [];
+
+  /**
+   * Creates a new instance of the CompositeState class.
+   * @param context The context of the composite state.
+   */
+  constructor(context: CompositeState) {
+    super(context);
+  }
+
+  /**
+   * Executes the composite state.
+   * @param ui The user interface.
+   */
+  public async execute(ui: Ui): Promise<void> {
+    this.beforeStateExecution();
+    while (this.stateQueue.length > 0) {
+      const currentState = this.stateQueue.shift();
+      if (currentState) {
+        await currentState.execute(ui);
+      }
+    }
+    this.afterStateExecution();
+  }
+
+  /**
+   * Pushes a state to the end of the state queue.
+   * @param state The state to be pushed.
+   */
+  public pushStateToQueue(state: State): void {
+    this.stateQueue.push(state);
+  }
+
+  /**
+   * Pushes a state to the beginning of the state queue.
+   * @param state The state to be pushed.
+   */
+  public unshiftStateToQueue(state: State): void {
+    this.stateQueue.unshift(state);
+  }
+
+  /**
+   * Executes before the states in the stateQueue are executed.
+   */
+  beforeStateExecution(): void {}
+
+  /**
+   * Executes after the states in the stateQueue are executed.
+   */
+  afterStateExecution(): void {}
+}
