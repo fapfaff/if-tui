@@ -1,6 +1,6 @@
-import {input} from '@inquirer/prompts';
+import {input, select} from '@inquirer/prompts';
 import {Answer} from '../types/answer';
-import {OpenTextQuestion, Question} from './question';
+import {OpenTextQuestion, Question, SingleChoiceQuestion} from './question';
 import {Ui} from './ui';
 
 /**
@@ -16,6 +16,8 @@ export class InquirerUi implements Ui {
   askQuestion(question: Question): Promise<Answer> {
     if (question instanceof OpenTextQuestion) {
       return this.askOpenTextQuestion(question);
+    } else if (question instanceof SingleChoiceQuestion) {
+      return this.askSingleChoiceQuestion(question);
     }
     throw new Error('Unsupported question type');
   }
@@ -29,6 +31,22 @@ export class InquirerUi implements Ui {
     return input({
       message: question.prompt,
       default: question.defaultValue,
+    }).then(res => {
+      return res as Answer;
+    });
+  }
+
+  /**
+   * Asks a single choice question to the user and returns the selected answer.
+   * @param question - The single choice question to ask.
+   * @returns A promise that resolves to the selected answer.
+   */
+  async askSingleChoiceQuestion(
+    question: SingleChoiceQuestion
+  ): Promise<Answer> {
+    return select({
+      message: question.prompt,
+      choices: question.choices,
     }).then(res => {
       return res as Answer;
     });
