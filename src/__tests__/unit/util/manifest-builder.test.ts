@@ -60,4 +60,11 @@ describe('ManifestBuilder', () => {
     expect(result.name).toBe(name);
     expect(result.description).toBe(description);
   });
+  it('should not set tags if not provided', () => {
+    const result = manifestBuilder.build();
+
+    expect(result.tags?.category).toBeUndefined();
+    expect(result.tags?.kind).toBeUndefined();
+    expect(result.tags?.complexity).toBeUndefined();
+  });
 });

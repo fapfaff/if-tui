@@ -12,9 +12,9 @@ export class ManifestBuilder {
       name: '',
       description: '',
       tags: {
-        kind: '',
-        complexity: '',
-        category: '',
+        kind: undefined,
+        complexity: undefined,
+        category: undefined,
       },
       aggregation: {
         metrics: [],
