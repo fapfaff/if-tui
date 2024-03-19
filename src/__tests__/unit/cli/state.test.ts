@@ -1,5 +1,5 @@
 import {Question} from '../../../cli/question';
-import {CompositeState, State} from '../../../cli/state';
+import {CompositeState, QuestionState, State} from '../../../cli/state';
 import {Ui} from '../../../cli/ui';
 import {Response} from '../../../types/response';
 
@@ -9,9 +9,22 @@ class TestState extends State {
 
 class TestCompositeState extends CompositeState {}
 
+const RESPONSE: Response = 'res';
+
 class TestUi implements Ui {
-  askQuestion(question: Question): Promise<Response> {
-    return Promise.resolve(question.prompt as Response);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  askQuestion(_question: Question): Promise<Response> {
+    return Promise.resolve(RESPONSE);
+  }
+}
+
+class TestQuestionState extends QuestionState {
+  constructor() {
+    super(undefined!, {prompt: 'Test question'});
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleResponse(_response: Response): void {
+    return;
   }
 }
 
@@ -57,5 +70,27 @@ describe('CompositeState', () => {
     expect(beforeStateExecution).toHaveBeenCalled();
     expect(state.execute).toHaveBeenCalled();
     expect(afterStateExecution).toHaveBeenCalled();
+  });
+});
+describe('QuestionState', () => {
+  let questionState: TestQuestionState;
+  const ui = new TestUi();
+
+  beforeEach(() => {
+    questionState = new TestQuestionState();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should ask the question and handle the response', async () => {
+    const handleResponse = jest.spyOn(questionState, 'handleResponse');
+    const askQuestion = jest.spyOn(ui, 'askQuestion');
+
+    await questionState.execute(ui);
+
+    expect(askQuestion).toHaveBeenCalledWith(questionState.question);
+    expect(handleResponse).toHaveBeenCalledWith(RESPONSE);
   });
 });

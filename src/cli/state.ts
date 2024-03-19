@@ -1,3 +1,5 @@
+import {Response} from '../types/response';
+import {Question} from './question';
 import {Ui} from './ui';
 
 /**
@@ -77,4 +79,37 @@ export abstract class CompositeState extends State {
    * Executes after the states in the stateQueue are executed.
    */
   afterStateExecution(): void {}
+}
+
+/**
+ * Represents an abstract class for question states.
+ */
+export abstract class QuestionState extends State {
+  question: Question;
+
+  /**
+   * Creates an instance of QuestionState.
+   * @param context The context of the state machine.
+   * @param question The question to be asked.
+   */
+  constructor(context: CompositeState, question: Question) {
+    super(context);
+    this.question = question;
+  }
+
+  /**
+   * Asks the question and handles the response.
+   * @param ui The user interface.
+   * @returns A promise that resolves when the execution is complete.
+   */
+  async execute(ui: Ui): Promise<void> {
+    const res = await ui.askQuestion(this.question);
+    this.handleResponse(res);
+  }
+
+  /**
+   * Handles the response to the question.
+   * @param response The response to the question.
+   */
+  abstract handleResponse(response: Response): void;
 }
