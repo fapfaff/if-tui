@@ -1,5 +1,6 @@
 import {ManifestBuilder} from '../util/manifest-builder';
 import {CompositeState} from './state';
+import {DescriptionState} from './states/description-state';
 import {NameState} from './states/name-state';
 
 /**
@@ -13,6 +14,7 @@ export class TuiManager extends CompositeState {
     super(undefined!);
     this.manifestBuilder = new ManifestBuilder();
     this.pushStateToQueue(new NameState(this));
+    this.pushStateToQueue(new DescriptionState(this));
   }
 
   public getManifestBuilder(): ManifestBuilder {
