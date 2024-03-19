@@ -6,6 +6,7 @@ import {DescriptionState} from './states/description-state';
 import {FileNameState} from './states/file-name-state';
 import {NameState} from './states/name-state';
 import {CategoryState} from './states/category-state';
+import {ComplexityState} from './states/complexity-state';
 
 /**
  * The entrypoiny of the tui. Calling the execute() method will start the tui, which will
@@ -21,6 +22,7 @@ export class TuiManager extends CompositeState {
     this.pushStateToQueue(new NameState(this));
     this.pushStateToQueue(new DescriptionState(this));
     this.pushStateToQueue(new CategoryState(this));
+    this.pushStateToQueue(new ComplexityState(this));
     this.pushStateToQueue(new FileNameState(this));
   }
 
