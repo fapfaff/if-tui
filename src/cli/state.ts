@@ -1,4 +1,5 @@
 import {Answer} from '../types/answer';
+import {ManifestBuilder} from '../util/manifest-builder';
 import {Question} from './question';
 import {Ui} from './ui';
 
@@ -22,6 +23,14 @@ export abstract class State {
    * @returns A Promise that resolves when the state execution is complete.
    */
   public abstract execute(ui: Ui): Promise<void>;
+
+  /**
+   * Retrieves the manifest builder from the current context.
+   * @returns The manifest builder.
+   */
+  public getManifestBuilder(): ManifestBuilder {
+    return this.context.getManifestBuilder();
+  }
 }
 
 /**

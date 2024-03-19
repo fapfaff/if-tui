@@ -1,3 +1,4 @@
+import {ManifestBuilder} from '../util/manifest-builder';
 import {CompositeState} from './state';
 
 /**
@@ -5,7 +6,14 @@ import {CompositeState} from './state';
  * execute the states in the state queue sequentially.
  */
 export class TuiManager extends CompositeState {
+  manifestBuilder: ManifestBuilder;
+
   constructor() {
     super(undefined!);
+    this.manifestBuilder = new ManifestBuilder();
+  }
+
+  public getManifestBuilder(): ManifestBuilder {
+    return this.manifestBuilder;
   }
 }

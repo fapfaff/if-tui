@@ -1,9 +1,14 @@
 import {Question} from '../../../cli/question';
 import {CompositeState, QuestionState, State} from '../../../cli/state';
+import {TuiManager} from '../../../cli/tui-manager';
 import {Ui} from '../../../cli/ui';
 import {Answer} from '../../../types/answer';
 
 class TestState extends State {
+  constructor(context: CompositeState) {
+    super(context);
+  }
+
   execute = jest.fn();
 }
 
@@ -27,6 +32,26 @@ class TestQuestionState extends QuestionState {
     return;
   }
 }
+
+describe('State', () => {
+  let state: TestState;
+
+  beforeEach(() => {
+    state = new TestState(new TuiManager());
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should execute the state', async () => {
+    const ui = new TestUi();
+    await state.execute(ui);
+    expect(state.execute).toHaveBeenCalled();
+  });
+
+  it('should get ManifestBuilder', () => {});
+});
 
 describe('CompositeState', () => {
   let compositeState: TestCompositeState;
