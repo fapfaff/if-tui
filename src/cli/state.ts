@@ -1,4 +1,4 @@
-import {Response} from '../types/response';
+import {Answer} from '../types/answer';
 import {Question} from './question';
 import {Ui} from './ui';
 
@@ -98,18 +98,18 @@ export abstract class QuestionState extends State {
   }
 
   /**
-   * Asks the question and handles the response.
+   * Asks the question and handles the answer.
    * @param ui The user interface.
    * @returns A promise that resolves when the execution is complete.
    */
   async execute(ui: Ui): Promise<void> {
     const res = await ui.askQuestion(this.question);
-    this.handleResponse(res);
+    this.handleAnswer(res);
   }
 
   /**
-   * Handles the response to the question.
-   * @param response The response to the question.
+   * Handles the answer to the question.
+   * @param answer The answer to the question.
    */
-  abstract handleResponse(response: Response): void;
+  abstract handleAnswer(answer: Answer): void;
 }

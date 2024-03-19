@@ -1,7 +1,7 @@
 import {Question} from '../../../cli/question';
 import {CompositeState, QuestionState, State} from '../../../cli/state';
 import {Ui} from '../../../cli/ui';
-import {Response} from '../../../types/response';
+import {Answer} from '../../../types/answer';
 
 class TestState extends State {
   execute = jest.fn();
@@ -9,11 +9,11 @@ class TestState extends State {
 
 class TestCompositeState extends CompositeState {}
 
-const RESPONSE: Response = 'res';
+const RESPONSE: Answer = 'res';
 
 class TestUi implements Ui {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  askQuestion(_question: Question): Promise<Response> {
+  askQuestion(_question: Question): Promise<Answer> {
     return Promise.resolve(RESPONSE);
   }
 }
@@ -23,7 +23,7 @@ class TestQuestionState extends QuestionState {
     super(undefined!, {prompt: 'Test question'});
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleResponse(_response: Response): void {
+  handleAnswer(_response: Answer): void {
     return;
   }
 }
@@ -85,12 +85,12 @@ describe('QuestionState', () => {
   });
 
   it('should ask the question and handle the response', async () => {
-    const handleResponse = jest.spyOn(questionState, 'handleResponse');
+    const handleAnswer = jest.spyOn(questionState, 'handleAnswer');
     const askQuestion = jest.spyOn(ui, 'askQuestion');
 
     await questionState.execute(ui);
 
     expect(askQuestion).toHaveBeenCalledWith(questionState.question);
-    expect(handleResponse).toHaveBeenCalledWith(RESPONSE);
+    expect(handleAnswer).toHaveBeenCalledWith(RESPONSE);
   });
 });

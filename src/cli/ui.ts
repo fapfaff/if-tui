@@ -1,4 +1,4 @@
-import {Response} from '../types/response';
+import {Answer} from '../types/answer';
 import {Question} from './question';
 
 /**
@@ -8,7 +8,7 @@ export interface Ui {
   /**
    * Asks a question and returns a promise that resolves to the response.
    * @param question The question to ask.
-   * @returns A promise that resolves to the response.
+   * @returns A promise that resolves to the answer.
    */
-  askQuestion(question: Question): Promise<Response>;
+  askQuestion(question: Question): Promise<Answer>;
 }
