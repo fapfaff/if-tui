@@ -31,6 +31,13 @@ export abstract class State {
   public getManifestBuilder(): ManifestBuilder {
     return this.context.getManifestBuilder();
   }
+
+  /**
+   * Sets the name of the manifest file.
+   */
+  public setManifestFileName(fileName: string): void {
+    this.context.setManifestFileName(fileName);
+  }
 }
 
 /**
@@ -82,12 +89,12 @@ export abstract class CompositeState extends State {
   /**
    * Executes before the states in the stateQueue are executed.
    */
-  beforeStateExecution(): void {}
+  async beforeStateExecution(): Promise<void> {}
 
   /**
    * Executes after the states in the stateQueue are executed.
    */
-  afterStateExecution(): void {}
+  async afterStateExecution(): Promise<void> {}
 }
 
 /**
