@@ -7,6 +7,8 @@ import {ERRORS} from './errors';
 import {CONFIG, STRINGS} from '../config';
 
 import {ManifestProcessArgs} from '../types/process-args';
+import {TuiManager} from '../cli/tui-manager';
+import {InquirerUi} from '../cli/inquirer-ui';
 
 const {CliInputError} = ERRORS;
 
@@ -65,7 +67,10 @@ export const parseArgs = () => {
   }
 
   if (init) {
-    console.info('Welcome to Impact Framework!');
+    const tui = new TuiManager();
+    const ui = new InquirerUi();
+
+    tui.execute(ui);
     return;
   }
 
