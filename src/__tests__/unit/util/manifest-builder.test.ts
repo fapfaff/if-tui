@@ -1,3 +1,4 @@
+import {Category, Complexity, Kind} from '../../../types/tags';
 import {ManifestBuilder} from '../../../util/manifest-builder';
 
 describe('ManifestBuilder', () => {
@@ -21,6 +22,30 @@ describe('ManifestBuilder', () => {
 
     expect(result).toBe(manifestBuilder);
     expect(manifestBuilder.build().description).toBe(description);
+  });
+
+  it('should set the category of the manifest', () => {
+    const category = Category.Cloud;
+
+    const result = manifestBuilder.setCategory(category).build();
+
+    expect(result.tags!.category).toBe(category);
+  });
+
+  it('should set the kind of the manifest', () => {
+    const kind = Kind.App;
+
+    const result = manifestBuilder.setKind(kind).build();
+
+    expect(result.tags!.kind).toBe(kind);
+  });
+
+  it('should set the complexity of the manifest', () => {
+    const complexity = Complexity.Simple;
+
+    const result = manifestBuilder.setComplexity(complexity).build();
+
+    expect(result.tags!.complexity).toBe(complexity);
   });
 
   it('should build the manifest', () => {
