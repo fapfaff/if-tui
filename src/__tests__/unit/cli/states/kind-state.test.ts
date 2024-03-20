@@ -1,5 +1,6 @@
 import {SingleChoiceQuestion} from '../../../../cli/question';
 import {KindState} from '../../../../cli/states/kind-state';
+import {WebState} from '../../../../cli/states/web-state';
 import {TuiManager} from '../../../../cli/tui-manager';
 import {Kind} from '../../../../types/tags';
 import {ManifestBuilder} from '../../../../util/manifest-builder';
@@ -37,5 +38,17 @@ describe('KindState', () => {
     kindState.handleAnswer(answer);
 
     expect(setKindSpy).toHaveBeenCalledWith(answer);
+  });
+  it('should add a state to the queue based on the answer', () => {
+    const answer = Kind.Web;
+    const context = new TuiManager();
+    const kindState = new KindState(context);
+    const addStateToQueueSpy = jest.spyOn(kindState, 'addStateToQueue');
+    const unshiftStateToQueueSpy = jest.spyOn(context, 'unshiftStateToQueue');
+
+    kindState.handleAnswer(answer);
+
+    expect(addStateToQueueSpy).toHaveBeenCalledWith(answer);
+    expect(unshiftStateToQueueSpy).toHaveBeenCalledWith(expect.any(WebState));
   });
 });
