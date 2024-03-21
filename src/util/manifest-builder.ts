@@ -1,4 +1,5 @@
 import {Manifest} from '../types/manifest';
+import {Node} from '../types/compute';
 import {Category, Complexity, Kind} from '../types/tags';
 
 /**
@@ -82,6 +83,30 @@ export class ManifestBuilder {
    */
   setComplexity(complexity: Complexity | string): this {
     this.manifest.tags!.complexity = complexity.toString();
+    return this;
+  }
+
+  /**
+   * Sets the node at the specified path in the manifest tree.
+   *
+   * @param path - The path to the node in the manifest tree.
+   * @param node - The node to set at the specified path.
+   * @returns The updated `ManifestBuilder` instance.
+   */
+  setNodeAtPath(path: string[], node: Node) {
+    const last = path.pop();
+    let current = this.manifest.tree;
+    for (const key of path) {
+      if (!current.children) current.children = {};
+      if (!current.children[key]) {
+        current.children[key] = {};
+      }
+      current = current.children[key];
+    }
+
+    if (!current.children) current.children = {};
+    current.children[last!] = node;
+
     return this;
   }
 

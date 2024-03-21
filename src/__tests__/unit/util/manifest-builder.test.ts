@@ -1,5 +1,6 @@
 import {Category, Complexity, Kind} from '../../../types/tags';
 import {ManifestBuilder} from '../../../util/manifest-builder';
+import {Node} from '../../../types/compute';
 
 describe('ManifestBuilder', () => {
   let manifestBuilder: ManifestBuilder;
@@ -66,5 +67,102 @@ describe('ManifestBuilder', () => {
     expect(result.tags?.category).toBeUndefined();
     expect(result.tags?.kind).toBeUndefined();
     expect(result.tags?.complexity).toBeUndefined();
+  });
+
+  describe('setNodeAtPath', () => {
+    it('should create a new node with a single path', () => {
+      const path = ['a'];
+      const node: Node = {
+        pipeline: ['element1', 'element2'],
+      };
+      manifestBuilder.setNodeAtPath(path, node);
+
+      const result = manifestBuilder.build();
+      console.log(result.tree);
+      expect(result.tree.children.a).toEqual(node);
+    });
+    it('should add empty nodes when path not existing', () => {
+      const path = ['a', 'b'];
+      const node: Node = {
+        pipeline: ['element1', 'element2'],
+      };
+      manifestBuilder.setNodeAtPath(path, node);
+
+      const result = manifestBuilder.build();
+
+      expect(result.tree).toEqual({children: {a: {children: {b: node}}}});
+    });
+    it('should add a node as a children of an existing node', () => {
+      const node1: Node = {
+        pipeline: ['element1', 'element2'],
+      };
+      const node2: Node = {
+        pipeline: ['element3', 'element4'],
+      };
+      manifestBuilder.setNodeAtPath(['a'], node1);
+
+      manifestBuilder.setNodeAtPath(['a', 'b'], node2);
+      const result = manifestBuilder.build();
+
+      expect(result.tree).toEqual({
+        children: {
+          a: {children: {b: node2}, pipeline: ['element1', 'element2']},
+        },
+      });
+    });
+    it('should not delete other children when adding a new node', () => {
+      const node1: Node = {
+        pipeline: ['element1', 'element2'],
+        children: {
+          b: {
+            pipeline: ['element5', 'element6'],
+          },
+        },
+      };
+      const node2: Node = {
+        pipeline: ['element3', 'element4'],
+      };
+      manifestBuilder.setNodeAtPath(['a'], node1);
+
+      manifestBuilder.setNodeAtPath(['a', 'c'], node2);
+      const result = manifestBuilder.build();
+
+      expect(result.tree).toEqual({
+        children: {
+          a: {
+            children: {
+              b: {
+                pipeline: ['element5', 'element6'],
+              },
+              c: node2,
+            },
+            pipeline: ['element1', 'element2'],
+          },
+        },
+      });
+    });
+    it('should override an existing node', () => {
+      const node1: Node = {
+        pipeline: ['element1', 'element2'],
+        children: {
+          b: {
+            pipeline: ['element5', 'element6'],
+          },
+        },
+      };
+      const node2: Node = {
+        pipeline: ['element3', 'element4'],
+      };
+      manifestBuilder.setNodeAtPath(['a'], node1);
+
+      manifestBuilder.setNodeAtPath(['a'], node2);
+      const result = manifestBuilder.build();
+
+      expect(result.tree).toEqual({
+        children: {
+          a: {pipeline: ['element3', 'element4']},
+        },
+      });
+    });
   });
 });
