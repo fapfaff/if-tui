@@ -94,9 +94,9 @@ export class ManifestBuilder {
    * @returns The updated `ManifestBuilder` instance.
    */
   setNodeAtPath(path: string[], node: Node) {
-    const last = path.pop();
     let current = this.manifest.tree;
-    for (const key of path) {
+    for (let i = 0; i < path.length - 1; i++) {
+      const key = path[i];
       if (!current.children) current.children = {};
       if (!current.children[key]) {
         current.children[key] = {};
@@ -105,6 +105,8 @@ export class ManifestBuilder {
     }
 
     if (!current.children) current.children = {};
+
+    const last = path[path.length - 1];
     current.children[last!] = node;
 
     return this;

@@ -78,7 +78,6 @@ describe('ManifestBuilder', () => {
       manifestBuilder.setNodeAtPath(path, node);
 
       const result = manifestBuilder.build();
-      console.log(result.tree);
       expect(result.tree.children.a).toEqual(node);
     });
     it('should add empty nodes when path not existing', () => {
@@ -163,6 +162,15 @@ describe('ManifestBuilder', () => {
           a: {pipeline: ['element3', 'element4']},
         },
       });
+    });
+    it('should not modify the path array', () => {
+      const path = ['a', 'b'];
+      const node: Node = {
+        pipeline: ['element1', 'element2'],
+      };
+      manifestBuilder.setNodeAtPath(path, node);
+
+      expect(path).toEqual(['a', 'b']);
     });
   });
 });
