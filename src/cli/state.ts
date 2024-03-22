@@ -4,6 +4,13 @@ import {Question} from './question';
 import {Ui} from './ui';
 
 /**
+ * Interface that can be implemented by states that are specific to a component.
+ */
+export interface WithComponent {
+  componentPath: string[];
+}
+
+/**
  * Represents an abstract state.
  */
 export abstract class State {
