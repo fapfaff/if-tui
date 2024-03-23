@@ -3,7 +3,14 @@ import {SingleChoiceQuestion} from '../question';
 import {CompositeState, QuestionState} from '../state';
 import {BackendState} from './backend-state';
 
+/**
+ * Represents the state for selecting whether the website is static or dynamic.
+ */
 export class WebTypeState extends QuestionState {
+  /**
+   * Constructs a new instance of the WebTypeState class.
+   * @param context - The context of the state machine.
+   */
   constructor(context: CompositeState) {
     const choices = [
       {name: 'Static', value: 'static'},
@@ -18,6 +25,11 @@ export class WebTypeState extends QuestionState {
     );
   }
 
+  /**
+   * Handles the user's answer to the question.
+   * @param answer - The user's answer whether the website is static or dynamic.
+   * @throws Error if the response type is invalid.
+   */
   handleAnswer(answer: Answer): void {
     if (!isStringAnswer(answer)) throw new Error('Invalid response type.');
 
@@ -28,6 +40,10 @@ export class WebTypeState extends QuestionState {
     }
   }
 
+  /**
+   * Adds dynamic components to the website.
+   * Adds the components 'backend' and 'storage' to the manifest.
+   */
   addDynamicComponents() {
     const backendPath = ['backend'];
 
