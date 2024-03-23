@@ -87,6 +87,23 @@ export class ManifestBuilder {
   }
 
   /**
+   * Retrieves the node at the specified path in the manifest tree.
+   * @param path - An array of strings representing the path to the desired node.
+   * @returns The node at the specified path, or undefined if the node does not exist.
+   */
+  getNodeAtPath(path: string[]): Node | undefined {
+    let current = this.manifest.tree;
+    for (let i = 0; i < path.length; i++) {
+      const key = path[i];
+      if (!current.children) return undefined;
+      if (!current.children[key]) return undefined;
+      current = current.children[key];
+    }
+
+    return current;
+  }
+
+  /**
    * Adds a plugin to the manifest builder.
    * @param pluginName - The name of the plugin.
    * @param pluginOptions - The options for the plugin.

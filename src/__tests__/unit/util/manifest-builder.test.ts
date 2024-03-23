@@ -233,4 +233,28 @@ describe('ManifestBuilder', () => {
       }).toThrow('Invalid plugin name.');
     });
   });
+  describe('getNodeAtPath', () => {
+    it('should return the node at the specified path', () => {
+      const path = ['a', 'b', 'c'];
+      const node: Node = {
+        pipeline: ['element1', 'element2'],
+      };
+      manifestBuilder.setNodeAtPath(path, node);
+
+      const result = manifestBuilder.getNodeAtPath(path);
+
+      expect(result).toEqual(node);
+    });
+    it('should return undefined if the node does not exist', () => {
+      const path = ['a', 'b', 'c'];
+      const node: Node = {
+        pipeline: ['element1', 'element2'],
+      };
+      manifestBuilder.setNodeAtPath(path, node);
+
+      const result = manifestBuilder.getNodeAtPath(['a', 'b', 'd']);
+
+      expect(result).toBeUndefined();
+    });
+  });
 });
