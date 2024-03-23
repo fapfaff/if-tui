@@ -1,5 +1,6 @@
 import {CompositeState} from '../../../../cli/state';
 import {BoaviztaCpuState} from '../../../../cli/states/boavizta-cpu-state';
+import {CpuCoresState} from '../../../../cli/states/cpu-cores-state';
 import {CpuNameState} from '../../../../cli/states/cpu-name-state';
 import {TuiManager} from '../../../../cli/tui-manager';
 
@@ -20,5 +21,6 @@ describe('BoaviztaCpuState', () => {
 
   it('should add states to the queue', () => {
     expect(boaviztaCpuState.stateQueue[0]).toEqual(expect.any(CpuNameState));
+    expect(boaviztaCpuState.stateQueue[1]).toEqual(expect.any(CpuCoresState));
   });
 });

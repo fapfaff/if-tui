@@ -1,4 +1,5 @@
 import {CompositeState, WithComponent} from '../state';
+import {CpuCoresState} from './cpu-cores-state';
 import {CpuNameState} from './cpu-name-state';
 
 /**
@@ -12,8 +13,14 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
     super(context);
     this.componentPath = componentPath;
     this.stateQueue.push(new CpuNameState(this, componentPath));
+    this.stateQueue.push(new CpuCoresState(this, componentPath));
   }
 
+  /**
+   * Executes before the state is executed.
+   * Adds the 'boavizta' plugin.
+   * @returns A promise that resolves when the method completes.
+   */
   async beforeStateExecution(): Promise<void> {
     const boaviztaPlugin = {
       path: '@grnsft/if-unofficial-plugins',
