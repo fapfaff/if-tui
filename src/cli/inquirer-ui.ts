@@ -1,6 +1,11 @@
-import {input, select} from '@inquirer/prompts';
+import {confirm, input, select} from '@inquirer/prompts';
 import {Answer} from '../types/answer';
-import {OpenTextQuestion, Question, SingleChoiceQuestion} from './question';
+import {
+  ConfirmQuestion,
+  OpenTextQuestion,
+  Question,
+  SingleChoiceQuestion,
+} from './question';
 import {Ui} from './ui';
 
 /**
@@ -18,6 +23,8 @@ export class InquirerUi implements Ui {
       return this.askOpenTextQuestion(question);
     } else if (question instanceof SingleChoiceQuestion) {
       return this.askSingleChoiceQuestion(question);
+    } else if (question instanceof ConfirmQuestion) {
+      return this.askConfirmQuestion(question);
     }
     throw new Error('Unsupported question type');
   }
@@ -47,6 +54,20 @@ export class InquirerUi implements Ui {
     return select({
       message: question.prompt,
       choices: question.choices,
+    }).then(res => {
+      return res as Answer;
+    });
+  }
+
+  /**
+   * Asks a confirm question to the user and returns the answer.
+   * @param question - The confirm question to ask.
+   * @returns A promise that resolves to the user's answer.
+   */
+  async askConfirmQuestion(question: ConfirmQuestion): Promise<Answer> {
+    return confirm({
+      message: question.prompt,
+      default: question.defaultValue,
     }).then(res => {
       return res as Answer;
     });

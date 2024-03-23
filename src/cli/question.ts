@@ -12,6 +12,28 @@ export abstract class Question {
 }
 
 /**
+ * Represents a confirmation question.
+ */
+/**
+ * Represents a confirm question that prompts the user for a yes or no answer.
+ */
+export class ConfirmQuestion extends Question {
+  prompt: string;
+  defaultValue: boolean;
+
+  /**
+   * Creates a new instance of the ConfirmQuestion class.
+   * @param prompt The prompt message displayed to the user.
+   * @param defaultValue The default value for the confirm question.
+   */
+  constructor(prompt: string, defaultValue: boolean) {
+    super(prompt);
+    this.prompt = prompt;
+    this.defaultValue = defaultValue;
+  }
+}
+
+/**
  * Represents an open text question that prompts the user for input.
  */
 export class OpenTextQuestion extends Question {
