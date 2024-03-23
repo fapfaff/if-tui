@@ -1,7 +1,7 @@
-import {Manifest} from '../types/manifest';
+import {Manifest, PluginOptions} from '../types/manifest';
 import {Node} from '../types/compute';
 import {Category, Complexity, Kind} from '../types/tags';
-
+import equal = require('fast-deep-equal');
 /**
  * Represents a builder for creating a manifest object.
  */
@@ -84,6 +84,24 @@ export class ManifestBuilder {
   setComplexity(complexity: Complexity | string): this {
     this.manifest.tags!.complexity = complexity.toString();
     return this;
+  }
+
+  /**
+   * Adds a plugin to the manifest builder.
+   * @param pluginName - The name of the plugin.
+   * @param pluginOptions - The options for the plugin.
+   * @throws {Error} If there is already a plugin configured with the same name.
+   */
+  addPlugin(pluginName: string, pluginOptions: PluginOptions) {
+    if (pluginName === '') throw new Error('Invalid plugin name.');
+    if (this.manifest.initialize.plugins[pluginName]) {
+      if (equal(this.manifest.initialize.plugins[pluginName], pluginOptions)) {
+        return;
+      }
+      throw new Error('There is already a plugin configured with this name.');
+    }
+
+    this.manifest.initialize.plugins[pluginName] = pluginOptions;
   }
 
   /**

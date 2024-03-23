@@ -1,6 +1,7 @@
 import {Category, Complexity, Kind} from '../../../types/tags';
 import {ManifestBuilder} from '../../../util/manifest-builder';
 import {Node} from '../../../types/compute';
+import {PluginOptions} from '../../../types/manifest';
 
 describe('ManifestBuilder', () => {
   let manifestBuilder: ManifestBuilder;
@@ -171,6 +172,65 @@ describe('ManifestBuilder', () => {
       manifestBuilder.setNodeAtPath(path, node);
 
       expect(path).toEqual(['a', 'b']);
+    });
+  });
+  describe('addPlugin', () => {
+    const operationalCarbon: PluginOptions = {
+      path: '@grnsft/if-plugins',
+      method: 'Multiply',
+      'global-config': {
+        'input-parameters': ['cpu/energy', 'grid/carbon-intensity'],
+        'output-parameter': 'carbon',
+      },
+    };
+    const teadsCurve: PluginOptions = {
+      path: '@grnsft/if-unofficial-plugins',
+      method: 'TeadsCurve',
+      'global-config': {
+        interpolation: 'spline',
+      },
+    };
+    it('should add a plugin to the manifest', () => {
+      manifestBuilder.addPlugin('operational-carbon', operationalCarbon);
+
+      const result = manifestBuilder.build();
+
+      expect(result.initialize.plugins).toEqual({
+        'operational-carbon': operationalCarbon,
+      });
+    });
+    it('should add multiple plugins to the manifest', () => {
+      manifestBuilder.addPlugin('operational-carbon', operationalCarbon);
+      manifestBuilder.addPlugin('teads-curve', teadsCurve);
+
+      const result = manifestBuilder.build();
+
+      expect(result.initialize.plugins).toEqual({
+        'operational-carbon': operationalCarbon,
+        'teads-curve': teadsCurve,
+      });
+    });
+    it('should ignore if the plugin already exists with the same config', () => {
+      manifestBuilder.addPlugin('operational-carbon', operationalCarbon);
+
+      manifestBuilder.addPlugin('operational-carbon', operationalCarbon);
+      const result = manifestBuilder.build();
+
+      expect(result.initialize.plugins).toEqual({
+        'operational-carbon': operationalCarbon,
+      });
+    });
+    it('should throw an error if the plugin name already exists with a different config', () => {
+      manifestBuilder.addPlugin('operational-carbon', operationalCarbon);
+
+      expect(() => {
+        manifestBuilder.addPlugin('operational-carbon', teadsCurve);
+      }).toThrow('There is already a plugin configured with this name.');
+    });
+    it('should throw an error if the plugin name is invalid', () => {
+      expect(() => {
+        manifestBuilder.addPlugin('', operationalCarbon);
+      }).toThrow('Invalid plugin name.');
     });
   });
 });
