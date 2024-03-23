@@ -1,6 +1,7 @@
 import {Answer, isStringAnswer} from '../../types/answer';
 import {SingleChoiceQuestion} from '../question';
 import {CompositeState, QuestionState} from '../state';
+import {BackendState} from './backend-state';
 
 export class WebTypeState extends QuestionState {
   constructor(context: CompositeState) {
@@ -28,7 +29,13 @@ export class WebTypeState extends QuestionState {
   }
 
   addDynamicComponents() {
-    this.getManifestBuilder().setNodeAtPath(['backend'], {});
+    const backendPath = ['backend'];
+
+    this.getManifestBuilder().setNodeAtPath(backendPath, {});
     this.getManifestBuilder().setNodeAtPath(['storage'], {});
+
+    this.context.unshiftStateToQueue(
+      new BackendState(this.context, backendPath)
+    );
   }
 }

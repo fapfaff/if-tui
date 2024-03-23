@@ -1,4 +1,5 @@
 import {CompositeState, WithComponent} from '../state';
+import {HostingState} from './hosting-state';
 
 /**
  * State to configure a backend component.
@@ -14,5 +15,6 @@ export class BackendState extends CompositeState implements WithComponent {
   constructor(context: CompositeState, componentPath: string[]) {
     super(context);
     this.componentPath = componentPath;
+    this.stateQueue.push(new HostingState(this, componentPath));
   }
 }
