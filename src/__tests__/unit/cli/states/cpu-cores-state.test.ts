@@ -38,7 +38,7 @@ describe('CpuCoresState', () => {
       cpuCoresState.getManifestBuilder().build().tree.children.a.children.b
         .defaults
     ).toEqual({
-      'cpu/number-cores': '16',
+      'cpu/number-cores': 16,
     });
   });
 });

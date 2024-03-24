@@ -30,7 +30,7 @@ export class CpuCoresState extends QuestionState implements WithComponent {
   handleAnswer(answer: Answer): void {
     if (typeof answer !== 'string') throw new Error('Invalid answer type');
     if (isNaN(parseInt(answer))) throw new Error('Invalid answer');
-    this.configureNode(answer);
+    this.configureNode(parseInt(answer));
   }
 
   /**
@@ -39,7 +39,7 @@ export class CpuCoresState extends QuestionState implements WithComponent {
    * @param answer - The number of CPU cores.
    * @throws {Error} If the node is not found.
    */
-  private configureNode(answer: string): void {
+  private configureNode(answer: number): void {
     const node = this.getManifestBuilder().getNodeAtPath(this.componentPath);
     if (!node) throw new Error('Node not found');
 
