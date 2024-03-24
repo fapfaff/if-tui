@@ -1,5 +1,6 @@
 import {CompositeState, WithComponent} from '../state';
 import {CpuCoresState} from './cpu-cores-state';
+import {CpuLifespanState} from './cpu-lifespan-state';
 import {CpuNameState} from './cpu-name-state';
 
 /**
@@ -14,6 +15,7 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
     this.componentPath = componentPath;
     this.stateQueue.push(new CpuNameState(this, componentPath));
     this.stateQueue.push(new CpuCoresState(this, componentPath));
+    this.stateQueue.push(new CpuLifespanState(this, componentPath));
   }
 
   /**
