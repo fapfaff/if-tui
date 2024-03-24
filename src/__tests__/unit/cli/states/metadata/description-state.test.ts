@@ -1,6 +1,6 @@
-import {DescriptionState} from '../../../../cli/states/description-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Answer} from '../../../../types/answer';
+import {DescriptionState} from '../../../../../cli/states/metadata/description-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Answer} from '../../../../../types/answer';
 
 describe('DescriptionState', () => {
   let descriptionState: DescriptionState;

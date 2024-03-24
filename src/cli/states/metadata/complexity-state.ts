@@ -1,7 +1,7 @@
-import {Answer, isStringAnswer} from '../../types/answer';
-import {Complexity} from '../../types/tags';
-import {SingleChoiceQuestion} from '../question';
-import {CompositeState, QuestionState} from '../state';
+import {Answer, isStringAnswer} from '../../../types/answer';
+import {Complexity} from '../../../types/tags';
+import {SingleChoiceQuestion} from '../../question';
+import {CompositeState, QuestionState} from '../../state';
 
 /**
  * State for selecting the complexity of the software.

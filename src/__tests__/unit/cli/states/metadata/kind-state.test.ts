@@ -1,9 +1,9 @@
-import {SingleChoiceQuestion} from '../../../../cli/question';
-import {KindState} from '../../../../cli/states/kind-state';
-import {WebState} from '../../../../cli/states/web-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Kind} from '../../../../types/tags';
-import {ManifestBuilder} from '../../../../util/manifest-builder';
+import {SingleChoiceQuestion} from '../../../../../cli/question';
+import {KindState} from '../../../../../cli/states/metadata/kind-state';
+import {WebState} from '../../../../../cli/states/web-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Kind} from '../../../../../types/tags';
+import {ManifestBuilder} from '../../../../../util/manifest-builder';
 
 describe('KindState', () => {
   let kindState: KindState;

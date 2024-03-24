@@ -1,7 +1,7 @@
-import {CompositeState} from '../../../../cli/state';
-import {CloudInstanceState} from '../../../../cli/states/cloud-instance-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Answer} from '../../../../types/answer';
+import {CompositeState} from '../../../../../cli/state';
+import {CloudInstanceState} from '../../../../../cli/states/cloud/cloud-instance-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Answer} from '../../../../../types/answer';
 
 describe('CloudInstanceState', () => {
   let context: CompositeState;

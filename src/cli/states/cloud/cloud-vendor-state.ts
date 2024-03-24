@@ -1,8 +1,8 @@
-import {Answer} from '../../types/answer';
-import {Node} from '../../types/compute';
-import {PluginOptions} from '../../types/manifest';
-import {SingleChoiceQuestion} from '../question';
-import {CompositeState, QuestionState, WithComponent} from '../state';
+import {Answer} from '../../../types/answer';
+import {Node} from '../../../types/compute';
+import {PluginOptions} from '../../../types/manifest';
+import {SingleChoiceQuestion} from '../../question';
+import {CompositeState, QuestionState, WithComponent} from '../../state';
 
 /**
  * Represents the state for selecting a cloud vendor.

@@ -2,8 +2,8 @@ import {Answer} from '../../types/answer';
 import {Category} from '../../types/tags';
 import {SingleChoiceQuestion} from '../question';
 import {CompositeState, QuestionState, WithComponent} from '../state';
-import {CloudState} from './cloud-state';
-import {OnPremiseState} from './onpremise-state';
+import {CloudState} from './cloud/cloud-state';
+import {OnPremiseState} from './on-premise/onpremise-state';
 
 /**
  * Represents the state for selecting the hosting type of a component.

@@ -1,4 +1,4 @@
-import {CompositeState, WithComponent} from '../state';
+import {CompositeState, WithComponent} from '../../state';
 import {CpuCoresState} from './cpu-cores-state';
 import {CpuLifespanState} from './cpu-lifespan-state';
 import {CpuNameState} from './cpu-name-state';

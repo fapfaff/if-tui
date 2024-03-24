@@ -1,8 +1,8 @@
-import {SingleChoiceQuestion} from '../../../../cli/question';
-import {ComplexityState} from '../../../../cli/states/complexity-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Complexity} from '../../../../types/tags';
-import {ManifestBuilder} from '../../../../util/manifest-builder';
+import {SingleChoiceQuestion} from '../../../../../cli/question';
+import {ComplexityState} from '../../../../../cli/states/metadata/complexity-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Complexity} from '../../../../../types/tags';
+import {ManifestBuilder} from '../../../../../util/manifest-builder';
 
 describe('ComplexityState', () => {
   let complexityState: ComplexityState;

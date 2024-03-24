@@ -1,6 +1,6 @@
-import {Answer} from '../../types/answer';
-import {OpenTextQuestion} from '../question';
-import {CompositeState, QuestionState, WithComponent} from '../state';
+import {Answer} from '../../../types/answer';
+import {OpenTextQuestion} from '../../question';
+import {CompositeState, QuestionState, WithComponent} from '../../state';
 
 /**
  * Represents the state for capturing the name of the CPU.

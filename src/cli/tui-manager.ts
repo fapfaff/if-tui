@@ -2,12 +2,12 @@ import {promises} from 'fs';
 import * as yaml from 'js-yaml';
 import {ManifestBuilder} from '../util/manifest-builder';
 import {CompositeState} from './state';
-import {DescriptionState} from './states/description-state';
+import {DescriptionState} from './states/metadata/description-state';
 import {FileNameState} from './states/file-name-state';
-import {NameState} from './states/name-state';
-import {CategoryState} from './states/category-state';
-import {ComplexityState} from './states/complexity-state';
-import {KindState} from './states/kind-state';
+import {NameState} from './states/metadata/name-state';
+import {CategoryState} from './states/metadata/category-state';
+import {ComplexityState} from './states/metadata/complexity-state';
+import {KindState} from './states/metadata/kind-state';
 
 /**
  * The entrypoiny of the tui. Calling the execute() method will start the tui, which will

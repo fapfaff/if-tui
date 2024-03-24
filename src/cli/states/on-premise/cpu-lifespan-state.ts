@@ -1,6 +1,6 @@
-import {Answer, isStringAnswer} from '../../types/answer';
-import {OpenTextQuestion} from '../question';
-import {CompositeState, QuestionState, WithComponent} from '../state';
+import {Answer, isStringAnswer} from '../../../types/answer';
+import {OpenTextQuestion} from '../../question';
+import {CompositeState, QuestionState, WithComponent} from '../../state';
 
 export class CpuLifespanState extends QuestionState implements WithComponent {
   componentPath: string[];

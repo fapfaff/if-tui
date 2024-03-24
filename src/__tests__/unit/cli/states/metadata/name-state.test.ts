@@ -1,6 +1,6 @@
-import {NameState} from '../../../../cli/states/name-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Answer} from '../../../../types/answer';
+import {NameState} from '../../../../../cli/states/metadata/name-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Answer} from '../../../../../types/answer';
 
 describe('NameState', () => {
   let nameState: NameState;

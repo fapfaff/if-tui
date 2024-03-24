@@ -1,8 +1,8 @@
-import {CompositeState} from '../../../../cli/state';
-import {CloudInstanceState} from '../../../../cli/states/cloud-instance-state';
-import {CloudState} from '../../../../cli/states/cloud-state';
-import {CloudVendorState} from '../../../../cli/states/cloud-vendor-state';
-import {TuiManager} from '../../../../cli/tui-manager';
+import {CompositeState} from '../../../../../cli/state';
+import {CloudInstanceState} from '../../../../../cli/states/cloud/cloud-instance-state';
+import {CloudState} from '../../../../../cli/states/cloud/cloud-state';
+import {CloudVendorState} from '../../../../../cli/states/cloud/cloud-vendor-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
 
 describe('CloudState', () => {
   let context: CompositeState;

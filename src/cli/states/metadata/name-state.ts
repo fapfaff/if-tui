@@ -1,6 +1,6 @@
-import {Answer, isStringAnswer} from '../../types/answer';
-import {OpenTextQuestion} from '../question';
-import {CompositeState, QuestionState} from '../state';
+import {Answer, isStringAnswer} from '../../../types/answer';
+import {OpenTextQuestion} from '../../question';
+import {CompositeState, QuestionState} from '../../state';
 
 /**
  * State that asks for the name of the project and sets the name field in the manifest.

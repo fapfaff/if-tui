@@ -1,7 +1,7 @@
-import {CompositeState} from '../../../../cli/state';
-import {CpuLifespanState} from '../../../../cli/states/cpu-lifespan-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Answer} from '../../../../types/answer';
+import {CompositeState} from '../../../../../cli/state';
+import {CpuLifespanState} from '../../../../../cli/states/on-premise/cpu-lifespan-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Answer} from '../../../../../types/answer';
 
 describe('CpuLifespanState', () => {
   let context: CompositeState;

@@ -1,7 +1,7 @@
-import {CompositeState} from '../../../../cli/state';
-import {CpuNameState} from '../../../../cli/states/cpu-name-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Answer} from '../../../../types/answer';
+import {CompositeState} from '../../../../../cli/state';
+import {CpuNameState} from '../../../../../cli/states/on-premise/cpu-name-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Answer} from '../../../../../types/answer';
 
 describe('CpuNameState', () => {
   let context: CompositeState;

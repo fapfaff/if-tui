@@ -1,4 +1,4 @@
-import {CompositeState, WithComponent} from '../state';
+import {CompositeState, WithComponent} from '../../state';
 import {CloudInstanceState} from './cloud-instance-state';
 import {CloudVendorState} from './cloud-vendor-state';
 

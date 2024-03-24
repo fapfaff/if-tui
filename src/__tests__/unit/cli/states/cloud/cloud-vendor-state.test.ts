@@ -1,7 +1,7 @@
-import {CompositeState} from '../../../../cli/state';
-import {CloudVendorState} from '../../../../cli/states/cloud-vendor-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Answer} from '../../../../types/answer';
+import {CompositeState} from '../../../../../cli/state';
+import {CloudVendorState} from '../../../../../cli/states/cloud/cloud-vendor-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Answer} from '../../../../../types/answer';
 
 describe('CloudVendorState', () => {
   let context: CompositeState;

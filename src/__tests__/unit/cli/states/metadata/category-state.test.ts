@@ -1,8 +1,8 @@
-import {SingleChoiceQuestion} from '../../../../cli/question';
-import {CategoryState} from '../../../../cli/states/category-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {Category} from '../../../../types/tags';
-import {ManifestBuilder} from '../../../../util/manifest-builder';
+import {SingleChoiceQuestion} from '../../../../../cli/question';
+import {CategoryState} from '../../../../../cli/states/metadata/category-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {Category} from '../../../../../types/tags';
+import {ManifestBuilder} from '../../../../../util/manifest-builder';
 
 describe('CategoryState', () => {
   let categoryState: CategoryState;

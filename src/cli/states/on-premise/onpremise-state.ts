@@ -1,4 +1,4 @@
-import {CompositeState, WithComponent} from '../state';
+import {CompositeState, WithComponent} from '../../state';
 import {BoaviztaCpuState} from './boavizta-cpu-state';
 
 /**

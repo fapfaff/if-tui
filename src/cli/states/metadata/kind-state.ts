@@ -1,11 +1,11 @@
-import {isStringAnswer} from '../../types/answer';
-import {Kind} from '../../types/tags';
-import {SingleChoiceQuestion} from '../question';
-import {CompositeState, QuestionState, State} from '../state';
-import {AppState} from './app-state';
-import {IotState} from './iot-state';
-import {MlState} from './ml-state';
-import {WebState} from './web-state';
+import {isStringAnswer} from '../../../types/answer';
+import {Kind} from '../../../types/tags';
+import {SingleChoiceQuestion} from '../../question';
+import {CompositeState, QuestionState, State} from '../../state';
+import {AppState} from '../app-state';
+import {IotState} from '../iot-state';
+import {MlState} from '../ml-state';
+import {WebState} from '../web-state';
 
 /**
  * State for selecting the kind of software the project is about.

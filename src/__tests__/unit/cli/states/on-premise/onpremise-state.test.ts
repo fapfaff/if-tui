@@ -1,7 +1,7 @@
-import {CompositeState} from '../../../../cli/state';
-import {OnPremiseState} from '../../../../cli/states/onpremise-state';
-import {TuiManager} from '../../../../cli/tui-manager';
-import {BoaviztaCpuState} from '../../../../cli/states/boavizta-cpu-state';
+import {CompositeState} from '../../../../../cli/state';
+import {OnPremiseState} from '../../../../../cli/states/on-premise/onpremise-state';
+import {TuiManager} from '../../../../../cli/tui-manager';
+import {BoaviztaCpuState} from '../../../../../cli/states/on-premise/boavizta-cpu-state';
 
 describe('CpuNameState', () => {
   let context: CompositeState;
