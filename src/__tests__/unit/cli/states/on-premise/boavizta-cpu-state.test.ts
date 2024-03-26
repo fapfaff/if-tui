@@ -29,4 +29,15 @@ describe('BoaviztaCpuState', () => {
     );
     expect(boaviztaCpuState.stateQueue[3]).toEqual(expect.any(CountryState));
   });
+
+  it('should add inputs to the node', () => {
+    boaviztaCpuState.getManifestBuilder().setNodeAtPath(componentPath, {});
+
+    boaviztaCpuState.beforeStateExecution();
+
+    const manifest = boaviztaCpuState.getManifestBuilder().build();
+    expect(
+      manifest.tree.children.a.children.b.inputs[0]['cpu/utilization']
+    ).toBeDefined();
+  });
 });

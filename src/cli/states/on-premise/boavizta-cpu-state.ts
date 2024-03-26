@@ -1,3 +1,4 @@
+import {Node} from '../../../types/compute';
 import {CompositeState, WithComponent} from '../../state';
 import {CountryState} from '../country-state';
 import {CpuCoresState} from './cpu-cores-state';
@@ -38,5 +39,16 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
 
     const node = this.getManifestBuilder().getNodeAtPath(this.componentPath);
     if (!node) throw new Error('Node not found');
+    this.addInputs(node);
+  }
+
+  addInputs(node: Node): void {
+    if (!node.inputs) node.inputs = [];
+
+    if (!node.inputs[0]) node.inputs[0] = {};
+    node.inputs[0]['cpu/utilization'] =
+      'TODO: CPU usage as a percentage (e.g. 80)';
+    // node.inputs[0]['gpu-util'] = 'TODO: GPU usage';
+    // node.inputs[0]['ram-util'] = 'TODO: RAM usage';
   }
 }
