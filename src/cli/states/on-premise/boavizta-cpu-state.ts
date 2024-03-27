@@ -20,11 +20,11 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
   }
 
   /**
-   * Executes before the state is executed.
-   * Adds the 'boavizta' plugin.
+   * Executes after the state is executed.
+   * Adds the 'boavizta' plugin to initialize and pipeline. Adds required inputs
    * @returns A promise that resolves when the method completes.
    */
-  async beforeStateExecution(): Promise<void> {
+  async afterStateExecution(): Promise<void> {
     const boaviztaPlugin = {
       path: '@grnsft/if-unofficial-plugins',
       method: 'BoaviztaCpuOutput',
@@ -33,14 +33,15 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
         verbose: true,
       },
     };
-    this.getManifestBuilder().addPlugin('boavizta', boaviztaPlugin);
+    this.getManifestBuilder().addPlugin('boavizta-cpu', boaviztaPlugin);
 
     const node = this.getManifestBuilder().getNodeAtPath(this.componentPath);
     if (!node) throw new Error('Node not found');
     this.addInputs(node);
+    this.addBoaviztaToPipeline(node);
   }
 
-  addInputs(node: Node): void {
+  private addInputs(node: Node): void {
     if (!node.inputs) node.inputs = [];
 
     if (!node.inputs[0]) node.inputs[0] = {};
@@ -48,5 +49,16 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
       'TODO: CPU usage as a percentage (e.g. 80)';
     // node.inputs[0]['gpu-util'] = 'TODO: GPU usage';
     // node.inputs[0]['ram-util'] = 'TODO: RAM usage';
+  }
+
+  /**
+   * Adds 'boavizta' plugin to the pipeline of a given node.
+   * @param node - The node to add 'boavizta' to its pipeline.
+   */
+  private addBoaviztaToPipeline(node: Node): void {
+    if (!node.pipeline) {
+      node.pipeline = [];
+    }
+    node.pipeline.push('boavizta-cpu');
   }
 }
