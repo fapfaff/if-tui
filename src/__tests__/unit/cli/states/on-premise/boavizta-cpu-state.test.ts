@@ -1,5 +1,4 @@
 import {CompositeState} from '../../../../../cli/state';
-import {CountryState} from '../../../../../cli/states/country-state';
 import {BoaviztaCpuState} from '../../../../../cli/states/on-premise/boavizta-cpu-state';
 import {CpuCoresState} from '../../../../../cli/states/on-premise/cpu-cores-state';
 import {CpuLifespanState} from '../../../../../cli/states/on-premise/cpu-lifespan-state';
@@ -27,7 +26,6 @@ describe('BoaviztaCpuState', () => {
     expect(boaviztaCpuState.stateQueue[2]).toEqual(
       expect.any(CpuLifespanState)
     );
-    expect(boaviztaCpuState.stateQueue[3]).toEqual(expect.any(CountryState));
   });
 
   it('should add inputs to the node', () => {
