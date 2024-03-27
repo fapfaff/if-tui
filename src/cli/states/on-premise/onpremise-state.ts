@@ -1,4 +1,5 @@
 import {CompositeState, WithComponent} from '../../state';
+import {CarbonIntensityState} from '../carbon-intensity-state';
 import {BoaviztaCpuState} from './boavizta-cpu-state';
 
 /**
@@ -11,5 +12,6 @@ export class OnPremiseState extends CompositeState implements WithComponent {
     super(context);
     this.componentPath = componentPath;
     this.stateQueue.push(new BoaviztaCpuState(this, componentPath));
+    this.stateQueue.push(new CarbonIntensityState(this, componentPath));
   }
 }
