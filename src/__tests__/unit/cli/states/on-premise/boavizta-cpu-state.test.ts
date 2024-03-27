@@ -47,6 +47,18 @@ describe('BoaviztaCpuState', () => {
     ).toBeDefined();
   });
 
+  it('should set timestamp and duration as input of the node', () => {
+    boaviztaCpuState.afterStateExecution();
+
+    const manifest = boaviztaCpuState.getManifestBuilder().build();
+    expect(
+      manifest.tree.children.a.children.b.inputs[0].timestamp
+    ).toBeDefined();
+    expect(
+      manifest.tree.children.a.children.b.inputs[0].duration
+    ).toBeDefined();
+  });
+
   it('should add boavizta-cpu to the initialization', () => {
     const boaviztaPlugin = {
       path: '@grnsft/if-unofficial-plugins',

@@ -47,9 +47,12 @@ export class CloudInstanceState extends QuestionState implements WithComponent {
     if (!node.defaults) node.defaults = {};
     node.defaults['cloud/instance-type'] = instanceName;
 
-    if (!node.inputs) node.inputs = [];
-    node.inputs.push({
-      'cpu/utilization': 'TODO: CPU usage as a percentage (e.g. 80)',
-    });
+    if (!node.inputs) node.inputs = [{}];
+    if (!node.inputs[0]) node.inputs[0] = {};
+
+    node.inputs[0]['timestamp'] = 'TODO: Timestamp of the measurement';
+    node.inputs[0]['duration'] = 'TODO: Duration of the measurement';
+    node.inputs[0]['cpu/utilization'] =
+      'TODO: CPU usage as a percentage (e.g. 80)';
   }
 }

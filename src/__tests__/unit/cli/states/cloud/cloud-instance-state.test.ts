@@ -62,6 +62,8 @@ describe('CloudInstanceState', () => {
     ).toEqual(
       expect.objectContaining({
         'cpu/utilization': 'TODO: CPU usage as a percentage (e.g. 80)',
+        timestamp: 'TODO: Timestamp of the measurement',
+        duration: 'TODO: Duration of the measurement',
       })
     );
   });

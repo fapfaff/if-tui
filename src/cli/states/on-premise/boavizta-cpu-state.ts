@@ -45,6 +45,8 @@ export class BoaviztaCpuState extends CompositeState implements WithComponent {
     if (!node.inputs) node.inputs = [];
 
     if (!node.inputs[0]) node.inputs[0] = {};
+    node.inputs[0]['timestamp'] = 'TODO: Timestamp of the measurement';
+    node.inputs[0]['duration'] = 'TODO: Duration of the measurement';
     node.inputs[0]['cpu/utilization'] =
       'TODO: CPU usage as a percentage (e.g. 80)';
     // node.inputs[0]['gpu-util'] = 'TODO: GPU usage';
