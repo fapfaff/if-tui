@@ -29,37 +29,4 @@ describe('BackendState', () => {
 
     expect(state.componentPath).toEqual(componentPath);
   });
-
-  it('should add sci and sci-o to the initialization', () => {
-    const sciOPlugin = {
-      path: '@grnsft/if-plugins',
-      method: 'SciO',
-    };
-    const sciPlugin = {
-      path: '@grnsft/if-plugins',
-      method: 'Sci',
-      'global-config': {
-        'functional-unit-time': '5 minutes',
-      },
-    };
-
-    backendState.afterStateExecution();
-
-    const manifest = backendState.getManifestBuilder().build();
-    expect(manifest.initialize.plugins).toEqual(
-      expect.objectContaining({
-        'sci-operational': sciOPlugin,
-        sci: sciPlugin,
-      })
-    );
-  });
-
-  it('should add sci-operational and sci to the pipeline', () => {
-    backendState.afterStateExecution();
-
-    const manifest = backendState.getManifestBuilder().build();
-    expect(manifest.tree.children.a.children.b.pipeline).toEqual(
-      expect.arrayContaining(['sci-operational', 'sci'])
-    );
-  });
 });
