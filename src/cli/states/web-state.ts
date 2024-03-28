@@ -1,4 +1,5 @@
 import {CompositeState} from '../state';
+import {TrafficState} from './traffic-state';
 import {WebTypeState} from './web-type-state';
 
 /**
@@ -9,6 +10,7 @@ export class WebState extends CompositeState {
   constructor(context: CompositeState) {
     super(context);
     this.unshiftStateToQueue(new WebTypeState(this));
+    this.pushStateToQueue(new TrafficState(this, ['traffic']));
   }
   async beforeStateExecution(): Promise<void> {
     this.getManifestBuilder().setNodeAtPath(['build'], {});
