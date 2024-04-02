@@ -2,6 +2,7 @@ import {Answer, isStringAnswer} from '../../types/answer';
 import {SingleChoiceQuestion} from '../question';
 import {CompositeState, QuestionState} from '../state';
 import {BackendState} from './backend-state';
+import {MultipleSubcomponentsState} from './multiple-subcomponents-state';
 
 /**
  * Represents the state for selecting whether the website is static or dynamic.
@@ -51,7 +52,12 @@ export class WebTypeState extends QuestionState {
     this.getManifestBuilder().setNodeAtPath(['storage'], {});
 
     this.context.unshiftStateToQueue(
-      new BackendState(this.context, backendPath)
+      new MultipleSubcomponentsState(
+        this.context,
+        backendPath,
+        'backend',
+        (context, path) => new BackendState(context, path)
+      )
     );
   }
 }
