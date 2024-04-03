@@ -1,6 +1,7 @@
 import {CompositeState, WithComponent} from '../../state';
 import {CarbonIntensityState} from '../carbon-intensity-state';
 import {BoaviztaCpuState} from './boavizta-cpu-state';
+import {MemoryState} from './memory-state';
 
 /**
  * State for configuring an on-premise component.
@@ -13,6 +14,7 @@ export class OnPremiseState extends CompositeState implements WithComponent {
     this.componentPath = componentPath;
     this.stateQueue.push(new BoaviztaCpuState(this, componentPath));
     this.stateQueue.push(new CarbonIntensityState(this, componentPath));
+    this.stateQueue.push(new MemoryState(this, componentPath));
   }
 
   async afterStateExecution(): Promise<void> {
