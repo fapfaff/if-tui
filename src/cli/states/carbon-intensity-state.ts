@@ -21,7 +21,8 @@ export class CarbonIntensityState
     super(
       context,
       new OpenTextQuestion(
-        'What is the carbon intensity of the electricity used in the data center (in gCO2e/kWh)?'
+        'What is the carbon intensity of the electricity used in the data center (in gCO2e/kWh)?',
+        '475' // average according to IEA 2019 https://www.iea.org/reports/global-energy-co2-status-report-2019/emissions
       )
     );
     this.componentPath = componentPath;
