@@ -26,4 +26,14 @@ describe('WebTypeState', () => {
     expect(manifest.tree.children.backend).toBeDefined();
     expect(manifest.tree.children.storage).toBeDefined();
   });
+
+  it('should add nothing if static site', () => {
+    const state = new WebTypeState(new TuiManager());
+
+    state.handleAnswer('static');
+
+    const manifest = state.getManifestBuilder().build();
+
+    expect(manifest.tree.children).toBeUndefined();
+  });
 });

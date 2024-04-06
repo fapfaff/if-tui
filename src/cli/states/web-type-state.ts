@@ -36,6 +36,8 @@ export class WebTypeState extends QuestionState {
 
     if (answer === 'dynamic') {
       this.addDynamicComponents();
+    } else if (answer === 'static') {
+      /* empty */
     } else {
       throw new Error('Invalid answer');
     }
