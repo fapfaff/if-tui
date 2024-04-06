@@ -31,6 +31,9 @@ describe('MemoryState', () => {
         'e-mem': {
           path: '@grnsft/if-plugins',
           method: 'EMem',
+          'global-config': {
+            'energy-per-gb': 0.000392,
+          },
         },
       })
     );
