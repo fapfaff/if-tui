@@ -51,6 +51,7 @@ describe('BackendState', () => {
       'e-net',
       'sci-energy',
       'sci-operational',
+      'operational-to-carbon',
       'sci',
     ]);
   });

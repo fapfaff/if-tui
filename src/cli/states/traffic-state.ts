@@ -67,6 +67,15 @@ export class TrafficState extends CompositeState implements WithComponent {
       path: '@grnsft/if-plugins',
       method: 'SciO',
     };
+    const operationalToCarbonPlugin = {
+      path: '@grnsft/if-plugins',
+      method: 'Coefficient',
+      'global-config': {
+        'input-parameter': 'carbon-operational',
+        coefficient: 1,
+        'output-parameter': 'carbon',
+      },
+    };
     const sciPlugin = {
       path: '@grnsft/if-plugins',
       method: 'Sci',
@@ -80,6 +89,10 @@ export class TrafficState extends CompositeState implements WithComponent {
     this.getManifestBuilder().addPlugin(
       'sci-operational',
       sciOperationalPlugin
+    );
+    this.getManifestBuilder().addPlugin(
+      'operational-to-carbon',
+      operationalToCarbonPlugin
     );
     this.getManifestBuilder().addPlugin('sci', sciPlugin);
   }
@@ -95,6 +108,7 @@ export class TrafficState extends CompositeState implements WithComponent {
     node.pipeline.push('e-net');
     node.pipeline.push('sci-energy');
     node.pipeline.push('sci-operational');
+    node.pipeline.push('operational-to-carbon');
     node.pipeline.push('sci');
   }
 }
