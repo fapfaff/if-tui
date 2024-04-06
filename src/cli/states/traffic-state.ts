@@ -55,6 +55,9 @@ export class TrafficState extends CompositeState implements WithComponent {
     const eNetPlugin = {
       path: '@grnsft/if-plugins',
       method: 'ENet',
+      'global-config': {
+        'energy-per-gb': 0.001,
+      },
     };
     const sciEnergyPlugin = {
       path: '@grnsft/if-plugins',
