@@ -1,4 +1,5 @@
 import {CompositeState, WithComponent} from '../state';
+import {CarbonIntensityState} from './carbon-intensity-state';
 
 /**
  * State that configures a node by adding inbound and outbound traffic inputs.
@@ -14,6 +15,7 @@ export class TrafficState extends CompositeState implements WithComponent {
   constructor(context: CompositeState, componentPath: string[]) {
     super(context);
     this.componentPath = componentPath;
+    this.stateQueue.push(new CarbonIntensityState(this, componentPath));
   }
 
   /**
