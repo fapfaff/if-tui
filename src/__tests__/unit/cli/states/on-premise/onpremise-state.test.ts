@@ -24,6 +24,10 @@ describe('CpuNameState', () => {
   });
 
   it('should add sci and sci-o to the initialization', () => {
+    const sciElugin = {
+      path: '@grnsft/if-plugins',
+      method: 'SciE',
+    };
     const sciOPlugin = {
       path: '@grnsft/if-plugins',
       method: 'SciO',
@@ -41,6 +45,7 @@ describe('CpuNameState', () => {
     const manifest = onPremiseState.getManifestBuilder().build();
     expect(manifest.initialize.plugins).toEqual(
       expect.objectContaining({
+        'sci-energy': sciElugin,
         'sci-operational': sciOPlugin,
         sci: sciPlugin,
       })

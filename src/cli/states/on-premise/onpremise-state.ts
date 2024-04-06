@@ -26,6 +26,10 @@ export class OnPremiseState extends CompositeState implements WithComponent {
    * Adds sci-operational and sci plugins to the initialize section.
    */
   private async addPlugins(): Promise<void> {
+    const sciElugin = {
+      path: '@grnsft/if-plugins',
+      method: 'SciE',
+    };
     const sciOPlugin = {
       path: '@grnsft/if-plugins',
       method: 'SciO',
@@ -38,6 +42,7 @@ export class OnPremiseState extends CompositeState implements WithComponent {
       },
     };
 
+    this.getManifestBuilder().addPlugin('sci-energy', sciElugin);
     this.getManifestBuilder().addPlugin('sci-operational', sciOPlugin);
     this.getManifestBuilder().addPlugin('sci', sciPlugin);
   }
@@ -51,6 +56,7 @@ export class OnPremiseState extends CompositeState implements WithComponent {
     const node = this.getManifestBuilder().getNodeAtPath(this.componentPath);
     if (!node) throw new Error('Node not found');
     if (!node.pipeline) node.pipeline = [];
+    node.pipeline.push('sci-energy');
     node.pipeline.push('sci-operational');
     node.pipeline.push('sci');
   }
