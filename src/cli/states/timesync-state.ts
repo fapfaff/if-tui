@@ -24,6 +24,7 @@ export class TimeSyncState extends CompositeState {
         'end-time':
           'TODO: End time for evaluation as ISO timestamp (e.g. 2023-12-12T00:01:00.000Z)',
         interval: 5,
+        'allow-padding': true,
       },
     };
     this.getManifestBuilder().addPlugin('timesync', timeSyncPlugin);
