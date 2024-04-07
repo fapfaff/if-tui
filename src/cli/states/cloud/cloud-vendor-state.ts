@@ -47,7 +47,7 @@ export class CloudVendorState extends QuestionState implements WithComponent {
    */
   private addCcfPlugin(): void {
     const ccfPlugin: PluginOptions = {
-      path: '@grnsft/if-unofficial-models',
+      path: '@grnsft/if-unofficial-plugins',
       method: 'CloudCarbonFootprint',
     };
 

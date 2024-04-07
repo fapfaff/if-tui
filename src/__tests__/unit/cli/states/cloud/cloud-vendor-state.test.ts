@@ -34,7 +34,7 @@ describe('CloudVendorState', () => {
       cloudVendorState.getManifestBuilder().build().initialize.plugins
     ).toEqual({
       ccf: {
-        path: '@grnsft/if-unofficial-models',
+        path: '@grnsft/if-unofficial-plugins',
         method: 'CloudCarbonFootprint',
       },
     });
