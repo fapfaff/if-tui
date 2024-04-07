@@ -101,6 +101,14 @@ export class ManifestBuilder {
   }
 
   /**
+   * Get the plugins from the manifest.
+   * @returns The plugins from the manifest.
+   */
+  getPlugins() {
+    return this.manifest.initialize.plugins;
+  }
+
+  /**
    * Adds a plugin to the manifest builder.
    * @param pluginName - The name of the plugin.
    * @param pluginOptions - The options for the plugin.

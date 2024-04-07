@@ -9,6 +9,7 @@ import {CategoryState} from './states/metadata/category-state';
 import {ComplexityState} from './states/metadata/complexity-state';
 import {KindState} from './states/metadata/kind-state';
 import {TimeSyncState} from './states/timesync-state';
+import {EndMessageState} from './states/end-message-state';
 
 /**
  * The entrypoiny of the tui. Calling the execute() method will start the tui, which will
@@ -28,6 +29,7 @@ export class TuiManager extends CompositeState {
     this.pushStateToQueue(new KindState(this));
     this.pushStateToQueue(new TimeSyncState(this));
     this.pushStateToQueue(new FileNameState(this));
+    this.pushStateToQueue(new EndMessageState(this));
   }
 
   /**
