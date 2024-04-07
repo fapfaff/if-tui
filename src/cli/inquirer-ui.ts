@@ -3,10 +3,12 @@ import {Answer} from '../types/answer';
 import {
   ConfirmQuestion,
   OpenTextQuestion,
+  PrintTextQuestion,
   Question,
   SingleChoiceQuestion,
 } from './question';
 import {Ui} from './ui';
+import {logger} from '../util/logger';
 
 /**
  * Represents a user interface for asking questions and receiving responses.
@@ -25,6 +27,8 @@ export class InquirerUi implements Ui {
       return this.askSingleChoiceQuestion(question);
     } else if (question instanceof ConfirmQuestion) {
       return this.askConfirmQuestion(question);
+    } else if (question instanceof PrintTextQuestion) {
+      return this.printTextQuestion(question);
     }
     throw new Error('Unsupported question type');
   }
@@ -71,5 +75,14 @@ export class InquirerUi implements Ui {
     }).then(res => {
       return res as Answer;
     });
+  }
+
+  /**
+   * Just prints a text to the console.
+   * @param question The print text question.
+   */
+  async printTextQuestion(question: PrintTextQuestion): Promise<Answer> {
+    logger.info(question.prompt, {skipFormat: true});
+    return undefined;
   }
 }

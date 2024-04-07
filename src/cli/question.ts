@@ -73,3 +73,19 @@ export class SingleChoiceQuestion extends Question {
     this.choices = choices;
   }
 }
+
+/**
+ * Just prints a text to the console.
+ */
+export class PrintTextQuestion extends Question {
+  prompt: string;
+
+  /**
+   * Creates a new instance of the PrintTextQuestion class.
+   * @param prompt The text to print.
+   */
+  constructor(prompt: string) {
+    super(prompt);
+    this.prompt = prompt;
+  }
+}

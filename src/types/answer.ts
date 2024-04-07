@@ -1,4 +1,4 @@
-export type Answer = string | string[] | boolean | number;
+export type Answer = string | string[] | boolean | number | undefined;
 
 /**
  * Checks if the provided answer is a string.

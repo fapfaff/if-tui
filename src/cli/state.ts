@@ -108,7 +108,7 @@ export abstract class CompositeState extends State {
  * Represents an abstract class for question states.
  */
 export abstract class QuestionState extends State {
-  question: Question;
+  public question: Question;
 
   /**
    * Creates an instance of QuestionState.
@@ -126,8 +126,10 @@ export abstract class QuestionState extends State {
    * @returns A promise that resolves when the execution is complete.
    */
   async execute(ui: Ui): Promise<void> {
+    this.beforeQuestion();
     const res = await ui.askQuestion(this.question);
     this.handleAnswer(res);
+    this.afterQuestion();
   }
 
   /**
@@ -135,4 +137,14 @@ export abstract class QuestionState extends State {
    * @param answer The answer to the question.
    */
   abstract handleAnswer(answer: Answer): void;
+
+  /**
+   * Executes before the question gets asked.
+   */
+  async beforeQuestion(): Promise<void> {}
+
+  /**
+   * Executes after the question gets asked.
+   */
+  async afterQuestion(): Promise<void> {}
 }
