@@ -21,13 +21,10 @@ export class ManifestBuilder {
         metrics: [],
         type: 'both',
       },
-      params: [],
       initialize: {
         plugins: {},
-        outputs: [],
       },
       tree: {},
-      'if-version': '',
     };
   }
 
