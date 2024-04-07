@@ -18,7 +18,7 @@ export class ManifestBuilder {
         category: undefined,
       },
       aggregation: {
-        metrics: [],
+        metrics: ['carbon'],
         type: 'both',
       },
       initialize: {
