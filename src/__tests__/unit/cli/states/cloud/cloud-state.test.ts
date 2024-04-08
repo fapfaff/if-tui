@@ -1,4 +1,5 @@
 import {CompositeState} from '../../../../../cli/state';
+import {CarbonIntensityState} from '../../../../../cli/states/carbon-intensity-state';
 import {CloudInstanceState} from '../../../../../cli/states/cloud/cloud-instance-state';
 import {CloudState} from '../../../../../cli/states/cloud/cloud-state';
 import {CloudVendorState} from '../../../../../cli/states/cloud/cloud-vendor-state';
@@ -25,9 +26,12 @@ describe('CloudState', () => {
   });
 
   it('should add the CloudVendorState and CloudInstanceState to the state queue', () => {
-    expect(cloudInstanceState.stateQueue).toHaveLength(2);
+    expect(cloudInstanceState.stateQueue).toHaveLength(3);
     expect(cloudInstanceState.stateQueue[0]).toBeInstanceOf(CloudVendorState);
     expect(cloudInstanceState.stateQueue[1]).toBeInstanceOf(CloudInstanceState);
+    expect(cloudInstanceState.stateQueue[2]).toBeInstanceOf(
+      CarbonIntensityState
+    );
   });
 
   it('should add sci and sci-o to the initialization', () => {

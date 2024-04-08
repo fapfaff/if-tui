@@ -1,4 +1,5 @@
 import {CompositeState, WithComponent} from '../../state';
+import {CarbonIntensityState} from '../carbon-intensity-state';
 import {CloudInstanceState} from './cloud-instance-state';
 import {CloudVendorState} from './cloud-vendor-state';
 
@@ -13,7 +14,8 @@ export class CloudState extends CompositeState implements WithComponent {
     this.componentPath = componentPath;
     this.stateQueue.push(
       new CloudVendorState(this, componentPath),
-      new CloudInstanceState(this, componentPath)
+      new CloudInstanceState(this, componentPath),
+      new CarbonIntensityState(this, componentPath)
     );
   }
 
