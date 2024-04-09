@@ -7,7 +7,6 @@ import {load} from './lib/load';
 import {parameterize} from './lib/parameterize';
 
 import {parseArgs} from './util/args';
-import {ERRORS} from './util/errors';
 import {andHandle} from './util/helpers';
 import {logger} from './util/logger';
 
@@ -15,9 +14,7 @@ import {STRINGS} from './config';
 
 const packageJson = require('../package.json');
 
-const {CliInputError} = ERRORS;
-
-const {DISCLAIMER_MESSAGE, SOMETHING_WRONG} = STRINGS;
+const {DISCLAIMER_MESSAGE} = STRINGS;
 
 const impactEngine = async () => {
   logger.info(DISCLAIMER_MESSAGE);
@@ -37,7 +34,7 @@ const impactEngine = async () => {
     return;
   }
 
-  return Promise.reject(new CliInputError(SOMETHING_WRONG));
+  return Promise.resolve();
 };
 
 impactEngine().catch(andHandle);

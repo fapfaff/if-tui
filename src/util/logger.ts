@@ -12,11 +12,13 @@ export const logger = winston.createLogger({
       format: 'YYYY-MM-DD hh:mm:ss.SSS A',
     }),
     align(),
-    printf(
-      (info: any) =>
-        `[${info.timestamp}] ${info.level}: ${info.message}
-${info.stack || ''}`
-    )
+    printf((info: any) => {
+      if (info.skipFormat) {
+        return info.message;
+      }
+      return `[${info.timestamp}] ${info.level}: ${info.message}
+${info.stack || ''}`;
+    })
   ),
   transports: [new winston.transports.Console()],
 });

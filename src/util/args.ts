@@ -7,6 +7,8 @@ import {ERRORS} from './errors';
 import {CONFIG, STRINGS} from '../config';
 
 import {ManifestProcessArgs} from '../types/process-args';
+import {TuiManager} from '../cli/tui-manager';
+import {InquirerUi} from '../cli/inquirer-ui';
 
 const {CliInputError} = ERRORS;
 
@@ -56,10 +58,19 @@ export const parseArgs = () => {
     output,
     'override-params': overrideParams,
     help,
+    init,
   } = validateAndParseProcessArgs();
 
   if (help) {
     console.info(HELP);
+    return;
+  }
+
+  if (init) {
+    const tui = new TuiManager();
+    const ui = new InquirerUi();
+
+    tui.execute(ui);
     return;
   }
 
